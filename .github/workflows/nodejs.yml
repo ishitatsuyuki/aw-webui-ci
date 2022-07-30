@@ -27,10 +27,13 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - uses: pnpm/action-setup@v2
+      with:
+        version: latest
     - name: Install
-      run: npm ci
+      run: pnpm i
     - name: Build
-      run: npm run build
+      run: pnpm run build
     - name: Upload build
       uses: actions/upload-artifact@v2-preview
       with:
@@ -62,6 +65,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - uses: pnpm/action-setup@v2
+      with:
+        version: latest
     - name: Set up Python
       uses: actions/setup-python@v1
       with:
@@ -114,14 +120,14 @@ jobs:
         python3 fakedata.py --since $STARTDATE --until $GITDATE
 
     - name: Install
-      run: npm ci
+      run: pnpm i
     - name: Run tests
       run: |
-        npm test
+        pnpm test
         bash <(curl -s https://codecov.io/bash)
     - name: Serve webui
       run: |
-          npm run serve &
+          pnpm run serve &
           sleep 3  # give a few seconds
     - name: Run e2e tests with testcafe
       uses: DevExpress/testcafe-action@latest

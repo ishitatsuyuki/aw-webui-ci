@@ -12,28 +12,28 @@ androidflag :=
 endif
 
 build: install
-	npm run build ${androidflag}
+	pnpm run build ${androidflag}
 
 install:
-	npm ci
+	pnpm i
 
 uninstall:
 	rm -r node_modules/
 
 dev:
-	npm run serve ${androidflag}
+	pnpm run serve ${androidflag}
 
 test:
-	npm test
+	pnpm test
 
 test-e2e:
-	npx testcafe firefox test/e2e/ -s takeOnFails=true
+	pnpx testcafe firefox test/e2e/ -s takeOnFails=true
 
 clean:
 	rm -rf node_modules dist
 
 lint:
-	npx eslint --ext=js,ts,vue --max-warnings=0 src/ test/
+	pnpx eslint --ext=js,ts,vue --max-warnings=0 src/ test/
 
 lint-fix:
-	npx eslint --ext=js,ts,vue --fix src/ test/
+	pnpx eslint --ext=js,ts,vue --fix src/ test/
