@@ -21,6 +21,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install
-      run: npm ci
+      run: pnpm i
     - name: Run linting
       run: make lint
